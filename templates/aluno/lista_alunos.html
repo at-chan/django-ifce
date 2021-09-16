@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% load widget_tweaks %}
+
+{% block title %}
+
+Lista de Alunos - {{ block.super }}
+
+{% endblock title %}
+
+
+{% block body %}
+<div class="container">
+    <h2>Lista de Alunos</h2>
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Id</th>
+                        <th scope="col">Nome</th>
+                        <th scope="col">CPF</th>
+                        <th scope="col">User</th>
+                        <th scope="col">E-mail</th>
+                        <th scope="col">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for aluno in alunos %}
+                    <tr>
+                        <th scope="row">#</th>
+                        <td>{{ aluno.id }}</td>
+                        <td>{{ aluno.nome }}</td>
+                        <td>{{ aluno.cpf }}</td>
+                        <td>{{ aluno.user }}</td>
+                        <td>{{ aluno.email}}</td>
+                        
+                       
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+
+</div>
+
+
+
+{% endblock body %}

@@ -1,15 +1,147 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Django-ifce</title>
-     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-</head>
-<body>
-<h1>Hello World</h1>
-<h2>Seja bem-vindo ao Curso de Django</h2>
 
-<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
+  <title>
+    {% block title %} DJANGO IFCE
+    {% endblock title%}
+
+  </title>
+
+
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="{% static 'css/materialize.css' %} " type="text/css" rel="stylesheet" media="screen,projection" />
+
+
+</head>
+
+<body>
+
+
+  <nav class="light-blue lighten-1" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="/" class="brand-logo">Django IFCE</a>
+      <ul class="right hide-on-med-and-down">
+        {% comment %} {% if user.is_authenticated%} {% endcomment %}
+        <li><a href="">Dashboard</a></li>
+        <!-- Dropdown Trigger -->
+        <li><a class="dropdown-trigger" href="#!" data-target="dropdown">Aluno<i
+              class="material-icons right">arrow_drop_down</i></a></li>
+        <li><a class="dropdown-trigger2" href="#!" data-target="dropdown2">Professor<i
+              class="material-icons right">arrow_drop_down</i></a></li>
+        <li><a href="">Sair</a></li>
+      </ul>
+
+
+      <ul id="dropdown" class="dropdown-content">
+        <li><a href="{% url 'aluno:add_aluno'  %}">Novo</a></li> -->
+        <!-- <li><a href="{% url 'aluno:lista_alunos'  %}">Alunos</a></li>
+
+        <li><a href="">Monitor</a></li>
+      </ul>
+
+      <ul id="dropdown2" class="dropdown-content">
+        <!-- <li><a href="{% url 'professor:add_professor'  %}">Novo</a></li> -->
+
+      </ul>
+
+
+      </ul>
+
+      <ul id="nav-mobile" class="sidenav">
+        {% comment %} {% if user.is_authenticated%} {% endcomment %}
+        <li><a href="">Dashboard</a></li>
+        <li><a href="">Perfil</a></li>
+        <li><a href="">Sair</a></li>
+        <li><a class="dropdown-trigger" href="#!" data-target="dropdown2">Dropdown<i
+              class="material-icons right">arrow_drop_down</i></a></li>
+
+
+
+        {% comment %} {% else%} {% endcomment %}
+
+        <li><a href="">Criar Conta</a></li>
+        <li><a href="">Login</a></li>
+
+        {% comment %} {%endif%} {% endcomment %}
+      </ul>
+      <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+
+  </div>
+
+  {% block body%}
+
+
+  {% endblock body %}
+
+
+
+
+
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="{% static 'js/materialize.js' %}"></script>
+  <script src="{% static 'js/init.js' %}"></script>
+  <script>
+    $(document).ready(function () {
+      $('select').formSelect();
+    });
+
+    let dateObj = new Date();
+    //DATEPICKER
+    $(document).ready(function () {
+      $('.datepicker').datepicker({
+        yearRange: [1930, dateObj.getFullYear()],
+        format: 'dd/mm/yyyy'
+      });
+    });
+    //NAVBAR DROPDOWN
+
+
+     //DROPDOWN ALUNO
+    $(".dropdown-trigger").dropdown({
+      inDuration: 300,
+      outDuration: 225,
+      constrain_width: false, // Does not change width of dropdown to that of the activator
+      hover: false, // Activate on hover
+      gutter: 0, // Spacing from edge
+      belowOrigin: true, // Displays dropdown below the button
+      alignment: 'left' // 
+
+    });
+     //DROPDOWN PROFESSOR
+    $(".dropdown-trigger2").dropdown({
+      inDuration: 300,
+      outDuration: 225,
+      constrain_width: false, // Does not change width of dropdown to that of the activator
+      hover: false, // Activate on hover
+      gutter: 0, // Spacing from edge
+      belowOrigin: true, // Displays dropdown below the button
+      alignment: 'center' // 
+
+    });
+
+    /* MODAL*/
+    $(document).ready(function () {
+      $('.modal').modal();
+    });
+
+
+
+
+  </script>
+
 </body>
+
 </html>

@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect, get_list_or_404,get_object_or_404
 from aluno.models  import Aluno
 from django.contrib import messages
 from aluno.forms import AlunoForm
+from django.views.generic import TemplateView,CreateView,ListView
 
 
 # Create your views here.
@@ -24,11 +25,15 @@ def AddAluno(request):
     return render(request,template_name,context)
 
 
+class HomeView(TemplateView):
+   template_name = 'aluno/lista_alunos.html'
 
-def lista_alunos(request):
-    template_name = 'aluno/lista_alunos.html'
-    alunos = Aluno.objects.all().reverse()
-    context = {
-       'alunos':alunos 
-    }
-    return render(request,template_name,context)
+
+class ListAlunosView(ListView):
+   model = Aluno
+   template_name = 'aluno/lista_alunos.html'
+   context_object_name = 'alunos'
+   paginate_by = 6
+
+   def get_queryset(self):
+       return Aluno.objects.all().order_by('-id')

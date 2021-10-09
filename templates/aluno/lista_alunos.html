@@ -35,8 +35,11 @@ Lista de Alunos - {{ block.super }}
                         <td>{{ aluno.cpf }}</td>
                         <td>{{ aluno.user }}</td>
                         <td>{{ aluno.email}}</td>
+                        <td>
+                            <a href="{% url 'aluno:delete_aluno' aluno.id %}" class="btn btn-danger btn-sm confirm-delete" id="deleteButton-{{ aluno.id }}">Excluir</a>
+                            <a href="{% url 'aluno:edit_aluno' aluno.id %}" class="btn btn-primary btn-sm">Editar</a>
+                        </td>
                         
-                       
                     </tr>
                     {% endfor %}
                 </tbody>

@@ -37,3 +37,23 @@ class ListAlunosView(ListView):
 
    def get_queryset(self):
        return Aluno.objects.all().order_by('-id')
+
+def deleteAluno(request, id_aluno):
+    aluno = Aluno.objects.get(id=id_aluno)
+    aluno.delete()
+    messages.success(request, "Aluno deletado com sucesso!")
+    return redirect('aluno:lista_alunos')
+
+def edit_aluno(request, id_aluno):
+    template_name = 'aluno/add_aluno.html'
+    context = {}
+    aluno = get_object_or_404(Aluno, pk=id_aluno)
+    if request.method == 'POST':
+        form = AlunoForm(request.POST, instance=aluno)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Aluno editado com sucesso!")
+            return redirect('aluno:lista_alunos')
+    form = AlunoForm(instance=aluno)
+    context['form'] = form
+    return render(request, template_name, context)
